@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from random import choice
 from customer.models import User
@@ -15,6 +15,9 @@ def loginUser(request):
     return render(request,'authentication/login.html')
 
 def registerUser(request):
+    data = {
+         'showSuccess' : True
+    }
     if request.method == 'POST':
         
         name = request.POST.get('name')
@@ -23,6 +26,7 @@ def registerUser(request):
         
         user = User(name=name,email=email,password=password)
         user.save()
+        return redirect('login')
     return render(request,'authentication/register.html')
 
 def forgetPassword(request):
