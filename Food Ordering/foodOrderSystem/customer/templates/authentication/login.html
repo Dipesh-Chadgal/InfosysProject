@@ -13,10 +13,28 @@
 
         <form method="POST">
         {% csrf_token %}
+
+        {% if messages%}
+          {% for message in messages  %}
+        
+              {% if message.tags == 'error'  %}
+                <div class="alert alert-danger" role="alert">
+                  {{message|safe}}
+                </div>
+                {% else %}
+                <div class="alert alert-primary" role="alert">
+                  {{message|safe}}
+                </div>
+                  {% endif %}
+
+          {% endfor %}
+        
+        {% endif %}
+
         <!-- Email input -->
         <div class="form-outline mb-4">
           <label class="form-label fw-semibold" for="email">Email address</label>
-          <input type="email" id="email" class="form-control form-control" placeholder="example@gmail.com" name="email" required/>
+          <input type="text" id="email" class="form-control form-control" placeholder="example@gmail.com" name="email" required/>
         </div>
 
         <!-- Password input -->

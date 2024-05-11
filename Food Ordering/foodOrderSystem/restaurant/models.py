@@ -1,12 +1,8 @@
-
 from django.db import models
+from customer.models import CustomUser  # Import CustomUser from the user app
 from phonenumber_field.modelfields import PhoneNumberField
-# Create your models here.
 
-
-class Restaurant(models.Model):
+class restaurantUser(CustomUser):
     restaurantName = models.CharField(max_length=50)
     address = models.TextField()
     restaurantContact = PhoneNumberField()
-    email = models.EmailField()
-    password = models.CharField(max_length=30)

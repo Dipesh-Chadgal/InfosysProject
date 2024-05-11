@@ -23,6 +23,7 @@ from restaurant import views as restaurantviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',customerviews.loginUser,name = 'login'),
+    path('logout/',customerviews.loginUser,name = 'logout'),
     path('register/',customerviews.registerUser,name = 'register'),
     path('forgetPassword/',customerviews.forgetPassword,name = 'forgetPassword'),
     path('menu/',menuviews.menu,name = 'menu'),
