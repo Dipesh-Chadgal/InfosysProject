@@ -4,7 +4,7 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from random import choice
-from customer.models import customerUser
+from customer.models import customerUser, Feedback
 
 from django.contrib.auth import get_user_model
 # Create your views here.
@@ -74,3 +74,21 @@ def logoutUser(request):
     logout(request,User)
     messages.success(request,'Successfully logout')
     return redirect('login')
+
+def feedback_form(request):
+
+    if request.method == 'POST':
+        print("entered")
+        
+        comments=request.POST.get('comment')
+        try:
+            Fb = Feedback() 
+            Fb.stars = 0
+            Fb.comments = comments
+            Fb.save()
+            return HttpResponse('<h1>Thank You!</h1><p>Your feedback has been successfully submitted. We appreciate your valuable input.</p>')
+        except:
+            return HttpResponse('<h1>Sorry!</h1><p>There is an issue</p>')
+    return render(request,'feedback.html')
+
+    

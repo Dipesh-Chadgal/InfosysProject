@@ -20,6 +20,7 @@ from customer import views as customerviews
 from menu import views as menuviews
 from restaurant import views as restaurantviews
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',customerviews.loginUser,name = 'login'),
@@ -29,4 +30,5 @@ urlpatterns = [
     path('menu/',menuviews.menu,name = 'menu'),
     path('loginRestaurant/',restaurantviews.loginRestaurant,name = 'loginRestaurant'),
     path('registerRestaurant/',restaurantviews.registerRestaurant,name = 'registerRestaurant'),
+    path('feedback/', customerviews.feedback_form, name='feedback_form'),
 ]

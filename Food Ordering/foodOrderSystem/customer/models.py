@@ -10,4 +10,7 @@ class customerUser(CustomUser):
     name = models.CharField(max_length=50)
 
     
+class Feedback(models.Model):
+    stars = models.IntegerField()
+    comments = models.TextField()
 
