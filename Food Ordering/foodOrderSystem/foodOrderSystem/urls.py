@@ -19,6 +19,9 @@ from django.urls import path
 from customer import views as customerviews
 from menu import views as menuviews
 from restaurant import views as restaurantviews
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 urlpatterns = [
@@ -33,5 +36,9 @@ urlpatterns = [
     path('feedback/', customerviews.feedback_form, name='feedback_form'),
     path('contact/', customerviews.index, name='index'),
     path('home/', customerviews.Home, name='Home'),
+    path('testing/', restaurantviews.testing, name='test'),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
