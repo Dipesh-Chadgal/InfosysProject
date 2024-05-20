@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Food Order</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/feedback">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to Online Food Order</h1>
+            <p>Your favorite meals delivered to your doorstep.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h2>Easy Registration</h2>
+                <p>Join us with a simple registration process for users and restaurants.</p>
+            </div>
+            <div class="feature">
+                <h2>Extensive Menu</h2>
+                <p>Explore a wide variety of dishes from multiple restaurants.</p>
+            </div>
+            <div class="feature">
+                <h2>Contact and Feedback</h2>
+                <p>Get in touch with us and provide feedback to improve our service.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Online Food Order. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from customer.models import customerUser,Feedback
+from customer.models import customerUser,Feedback,Contact
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ['name','email','password']
@@ -10,3 +10,4 @@ class Comments(admin.ModelAdmin):
     list_display = ['stars','comments']  
 
 admin.site.register(Feedback, Comments)
+admin.site.register(Contact)

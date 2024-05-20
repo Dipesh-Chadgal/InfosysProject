@@ -4,7 +4,7 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from random import choice
-from customer.models import customerUser, Feedback
+from customer.models import customerUser, Feedback, Contact
 
 from django.contrib.auth import get_user_model
 # Create your views here.
@@ -91,4 +91,18 @@ def feedback_form(request):
             return HttpResponse('<h1>Sorry!</h1><p>There is an issue</p>')
     return render(request,'feedback.html')
 
-    
+def index(request):
+    if request.method=="POST":
+        contact=Contact()
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        subject=request.POST.get('subject')
+        contact.name=name
+        contact.email=email
+        contact.subject=subject
+        contact.save()
+        return HttpResponse('<h1>THANKS FOR CONTACTING US</h1>')
+    return render(request,'ind.html')
+
+def Home(request):
+    return render(request,'home.html')

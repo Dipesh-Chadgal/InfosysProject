@@ -31,4 +31,7 @@ urlpatterns = [
     path('loginRestaurant/',restaurantviews.loginRestaurant,name = 'loginRestaurant'),
     path('registerRestaurant/',restaurantviews.registerRestaurant,name = 'registerRestaurant'),
     path('feedback/', customerviews.feedback_form, name='feedback_form'),
+    path('contact/', customerviews.index, name='index'),
+    path('home/', customerviews.Home, name='Home'),
+
 ]
