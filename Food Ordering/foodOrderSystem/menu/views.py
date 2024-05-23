@@ -20,5 +20,5 @@ def menu(request):
     else:
         name = "No name found"      
 
-    return render(request, 'index.html', {'name': name, 'foodItems':foods})
+    return render(request, 'index1.html', {'name': name, 'foodItems':foods})
 
