@@ -40,17 +40,33 @@
 
                     <form method="POST">
                         {% csrf_token %}
+                        {% if messages%}
+                        {% for message in messages %}
+
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message|safe}}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-primary" role="alert">
+                            {{message|safe}}
+                        </div>
+                        {% endif %}
+
+                        {% endfor %}
+
+                        {% endif %}
                         <!-- Email input -->
                         <section id="section1">
                             <div class="form-outline my-4">
                                 <label class="form-label fw-semibold" for="email">Email Address</label>
                                 <input type="email" id="email" class="form-control form-control"
-                                    placeholder=" Example@gmail.com" name="email"  required/>
+                                    placeholder=" Example@gmail.com" name="email" required />
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label fw-semibold" for="password">Password</label>
                                 <input type="password" id="password" class="form-control form-control"
-                                    placeholder="password" name="password"  required/>
+                                    placeholder="password" name="password" required />
                                 <br>
                                 <a href={% url "forgetPassword" %}>Forgot password?</a>
 
@@ -67,9 +83,10 @@
 
                                 </div>
                                 <div class="text-center my-5">
-                                    <a href={% url "login" %} class="btn btn-outline-danger btn btn-block container-fluid">User Login</a>
-                           
-                                   </div>
+                                    <a href={% url "login" %}
+                                        class="btn btn-outline-danger btn btn-block container-fluid">User Login</a>
+
+                                </div>
                         </section>
                     </form>
 
