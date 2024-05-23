@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',customerviews.loginUser,name = 'login'),
     path('logout/',customerviews.loginUser,name = 'logout'),
+    path('logoutRestaurant/',restaurantviews.logoutRestaurant,name = 'logoutR'),
     path('register/',customerviews.registerUser,name = 'register'),
     path('forgetPassword/',customerviews.forgetPassword,name = 'forgetPassword'),
     path('menu/',menuviews.menu,name = 'menu'),
@@ -36,7 +37,7 @@ urlpatterns = [
     path('feedback/', customerviews.feedback_form, name='feedback_form'),
     path('contact/', customerviews.index, name='index'),
     path('home/', customerviews.Home, name='Home'),
-    path('testing/', restaurantviews.testing, name='test'),
+    path('addMenu/', restaurantviews.addMenu, name='addMenu'),
 
 ]
 

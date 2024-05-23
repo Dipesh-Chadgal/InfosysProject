@@ -106,5 +106,3 @@ def index(request):
 
 def Home(request):
     return render(request,'home.html')
-def testing(request):
-    return render(request,'testing.html')

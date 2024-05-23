@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from restaurant.models import restaurantUser,foodItems
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login,logout,get_user_model
 # Create your views here.
 
 
@@ -17,7 +18,7 @@ def loginRestaurant(request):
         #     return redirect('login')
 
         user = authenticate(username=username, password=password)
-        print(user)
+   
         if user is None:
             messages.error(request,'Invalid Password or Username')
             return redirect('loginRestaurant')
@@ -25,7 +26,7 @@ def loginRestaurant(request):
             login(request,user)
             messages.success(request,'Successfully Login')
             render(request,'loginRestaurant.html')
-            return redirect('menu')
+            return redirect('addMenu')
 
 
     return render(request,'loginRestaurant.html')
@@ -61,14 +62,27 @@ def registerRestaurant(request):
 
     return render(request,'registerRestaurant.html')
 
-
-def testing(request):
+@login_required
+def addMenu(request):
+    
+    if request.user.is_authenticated:
+        r = restaurantUser.objects.get(email=request.user)
+        restaurant = r.restaurantName
+    else:
+        restaurant = "hehe"
+    
     if request.method == 'POST':
         name = request.POST.get('name')
         price = request.POST.get('price')
         image = request.FILES.get('image')
 
-        item = foodItems(name=name, price=price, image=image)
+        item = foodItems(name=name, price=price, image=image, restaurantName= restaurant )
         item.save()
         return HttpResponse('Successfully uploaded')
-    return render(request, 'addMenu.html')
+    return render(request, 'addMenu.html',{'name':restaurant})
+
+
+def logoutRestaurant(request):
+    user = get_user_model()
+    logout(request)
+    return redirect("feedback_form")
