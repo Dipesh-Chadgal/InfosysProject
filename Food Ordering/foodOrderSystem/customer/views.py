@@ -12,6 +12,8 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 def loginUser(request):
+
+    
     if request.method == 'POST':
         User = get_user_model()
         username = request.POST.get('email')
@@ -25,6 +27,9 @@ def loginUser(request):
         print(user)
         if user is None:
             messages.error(request,'Invalid Password or Username')
+            return redirect('login')
+        elif user.is_restaurant:
+            messages.error(request,'You are Registered as restaurant')
             return redirect('login')
         else:
             login(request,user)
@@ -71,9 +76,9 @@ def forgetPassword(request):
     return render(request,'authentication/forgetPassword.html')
 
 def logoutUser(request):
-    logout(request,User)
-    messages.success(request,'Successfully logout')
-    return redirect('login')
+    User = get_user_model()
+    logout(request)
+    return render(request,'authentication/logout.html')
 
 def feedback_form(request):
 

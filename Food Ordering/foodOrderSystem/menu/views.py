@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 User = get_user_model()
 
-@login_required()
+@login_required
 def menu(request):
     user = request.user
 

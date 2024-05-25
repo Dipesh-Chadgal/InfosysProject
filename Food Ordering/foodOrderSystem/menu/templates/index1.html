@@ -66,10 +66,10 @@
 
     <br>
     <br>
-    <div class="container-fluid text-center d-flex justify-content-center">
+    <div class="container-fluid text-center d-flex justify-content-center flex-wrap py-5">
         <h1>Restaurant Near You</h1>
     </div>
-    <section class="cards d-flex justify-content-evenly py-5">
+    <section class="cards d-flex justify-content-evenly flex-wrap">
         {% if foodItems is None %}
         <p> Khana Nhi milega</p>
 
@@ -98,10 +98,19 @@
                         <div></div>
                     </div>
                 </div>
+                
             </div>
+            <!-- <div class="addtocart">
+                <button class="btn rounded-pill btn-danger">Add to cart</button>
+            </div> -->
+ 
+            
         </div>
+
+
         {% endfor %}
         {% endif %}
+        
     </section>
 
     {% include "footer.html" %}
