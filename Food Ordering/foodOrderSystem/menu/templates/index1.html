@@ -19,6 +19,39 @@
         rel="stylesheet">
     <title>Document</title>
     <link rel="stylesheet" href={% static 'style.css' %}>
+    <style>
+        .item {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .item-name {
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            margin-bottom: 10px;
+        }
+
+        .cart {
+            margin-left: auto;
+        }
+
+        .item-price {
+            margin-right: 10px;
+        }
+
+        .inner img {
+            max-width: 80px; /* Decrease image size */
+        }
+
+        .outer {
+            margin-bottom: 40px; /* Add space between items */
+            width: calc(25% - 20px); /* Ensure proper alignment */
+            margin-right: 20px; /* Add space between items */
+            display: inline-block; /* Ensure proper alignment */
+        }
+    </style>
 </head>
 
 <body>
@@ -73,14 +106,14 @@
         {% else %}
         {% for food in foodItems %}
         <div class="outer">
-            <div class="inner" style="background: url(/media/{{ food.image }}) no-repeat center center/cover;"></div>
-            <div class="item">
-                <div class="item-name">
-                    <h4>{{ food.name }}</h4>
-                    <p>Fresh & sweet</p>
-                </div>
-                <div class="item-price">
-                    <p>{{ food.price }}</p>
+            <div class="inner"
+                style="background: url(/media/{{ food.image }}) no-repeat center center/cover; height: 200px;"></div>
+            <div class="item d-flex align-items-center">
+                <div class="item-details flex-grow-1">
+                    <div class="item-name">
+                        <h4>{{ food.name }}</h4>
+                        <p>Fresh & sweet</p>
+                    </div>
                     <div class="rating">
                         <div></div>
                         <div></div>
@@ -88,8 +121,13 @@
                         <div></div>
                     </div>
                 </div>
-                <div class="addtocart">
-                    <button class="btn rounded-pill btn-danger add-to-cart" data-id="{{ food.id }}">Cart</button>
+                <div class="item-price-and-cart d-flex align-items-center">
+                    <div class="item-price">
+                        <p>{{ food.price }}</p>
+                    </div>
+                    <div class="cart ml-4">
+                        <button class="btn rounded-pill btn-danger add-to-cart" data-id="{{ food.id }}">Cart</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,19 +162,4 @@
         }
 
         document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', () => {
-                const id = button.getAttribute('data-id');
-                fetch(`/add-to-cart/${id}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            cart.push(data.item);
-                            updateCart();
-                        }
-                    });
-            });
-        });
-    </script>
-</body>
-
-</html>
+            button.addEventListener('click
