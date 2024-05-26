@@ -107,7 +107,7 @@ def index(request):
         contact.subject=subject
         contact.save()
         return HttpResponse('<h1>THANKS FOR CONTACTING US</h1>')
-    return render(request,'ind.html')
+    return render(request,'contact.html')
 
 def Home(request):
     return render(request,'home.html')
