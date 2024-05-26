@@ -14,12 +14,15 @@
         body {
             background-color: #f8f9fa;
         }
+
         .table-bordered {
             border: 1px solid #dee2e6;
         }
+
         .table thead th {
             background-color: #e9ecef;
         }
+
         .cart-container {
             max-width: 900px;
             margin-top: 50px;
@@ -28,15 +31,19 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             margin-bottom: 20px;
         }
+
         img {
             border-radius: 8px;
         }
+
         .total-cost {
             font-weight: bold;
         }
+
         .btn-checkout {
             margin-top: 20px;
         }
@@ -59,7 +66,8 @@
             <tbody>
                 {% for item_id, item in cart.items %}
                 <tr>
-                    <td><img width="100px" height="100px" src="/media/{{ item.item.image }}" alt="{{ item.item.name }}"></td>
+                    <td><img width="100px" height="100px" src="/media/{{ item.item.image }}" alt="{{ item.item.name }}">
+                    </td>
                     <td>{{ item.item.restaurantName }}</td>
                     <td>{{ item.item.name }}</td>
                     <td>{{ item.quantity }}</td>
@@ -68,10 +76,14 @@
                 {% endfor %}
             </tbody>
         </table>
+        <script async src="https://js.stripe.com/v3/buy-button.js">
+        </script>
+
+
         <p class="total-cost text-right">Total: Rs. {{ totalCost }}</p>
-        <div class="text-right btn-checkout">
-            <a href="#" class="btn btn-primary">Proceed to Checkout</a>
-        </div>
+        <stripe-buy-button buy-button-id="buy_btn_1PKjk8SCYjqYYpTQ72GpxJyy"
+            publishable-key="pk_test_51NdG18SCYjqYYpTQOf0Hs2EkbpUKTxuM4hZbIzSabLnrFnSJxfIHvpPJmoAzPTL2tNp58kZiRufgOI9YxaaF4MkW00snqohQct">
+        </stripe-buy-button>
     </div>
 </body>
 

@@ -20,3 +20,7 @@ def Cart(request):
         cartDetails[items] = {"item":item,"quantity":cart[items]}
 
     return render(request,'cart.html',{'cart':cartDetails,"totalCost":totalCost})
+
+def payment(request):
+    # print(Cart.totalCost)
+    return render(request,'payment.html') 
