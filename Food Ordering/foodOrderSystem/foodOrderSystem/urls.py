@@ -39,7 +39,7 @@ urlpatterns = [
     path('contact/', customerviews.index, name='index'),
     path('', customerviews.Home, name='Home'),
     path('addMenu/', restaurantviews.addMenu, name='addMenu'),
-    path('cart/', orderviews.Cart, name='cart'),
+    path('cart/', orderviews.cart, name='cart'),
     path('payment/', orderviews.payment, name='payment'),
 
 ]
