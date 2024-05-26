@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'menu',
     'phonenumber_field',
     'restaurant',
+    'order'
 ]
 
 MIDDLEWARE = [

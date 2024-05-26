@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from customer import views as customerviews
 from menu import views as menuviews
+from order import views as orderviews
 from restaurant import views as restaurantviews
 from django.conf import settings
 from django.conf.urls.static import static
@@ -38,6 +39,7 @@ urlpatterns = [
     path('contact/', customerviews.index, name='index'),
     path('home/', customerviews.Home, name='Home'),
     path('addMenu/', restaurantviews.addMenu, name='addMenu'),
+    path('cart/', orderviews.Cart, name='cart'),
 
 ]
 
