@@ -37,7 +37,7 @@ urlpatterns = [
     path('registerRestaurant/',restaurantviews.registerRestaurant,name = 'registerRestaurant'),
     path('feedback/', customerviews.feedback_form, name='feedback_form'),
     path('contact/', customerviews.index, name='index'),
-    path('home/', customerviews.Home, name='Home'),
+    path('', customerviews.Home, name='Home'),
     path('addMenu/', restaurantviews.addMenu, name='addMenu'),
     path('cart/', orderviews.Cart, name='cart'),
 
