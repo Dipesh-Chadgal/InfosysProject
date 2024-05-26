@@ -125,9 +125,13 @@
                     <div class="item-price">
                         <p>{{ food.price }}</p>
                     </div>
+                    <form action="#" method="post">
+                        {%csrf_token%}
                     <div class="cart ml-4">
-                        <button class="btn rounded-pill btn-danger add-to-cart" data-id="{{ food.id }}">Cart</button>
+                        <input hidden type="text" name="id" value="{{ food.id }}">
+                        <input type="submit" class="btn btn-danger border btn-sm" value="Add to Cart">
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -144,22 +148,3 @@
     </div>
 
     {% include "footer.html" %}
-
-    <script>
-        const cart = [];
-        const updateCart = () => {
-            const cartItemsContainer = document.getElementById('cart-items');
-            cartItemsContainer.innerHTML = '';
-            let totalPrice = 0;
-            cart.forEach(item => {
-                totalPrice += item.price;
-                const li = document.createElement('li');
-                li.classList.add('list-group-item');
-                li.textContent = `${item.name} - $${item.price}`;
-                cartItemsContainer.appendChild(li);
-            });
-            document.getElementById('total-price').textContent = `Total: $${totalPrice}`;
-        }
-
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click
