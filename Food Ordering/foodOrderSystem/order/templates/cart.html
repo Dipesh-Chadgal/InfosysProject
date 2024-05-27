@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
@@ -39,11 +40,53 @@
         .btn-action {
             margin-right: 5px;
         }
+        
+      
+        .nav-link.menu-link {
+            
+            color: #dc3545;
+            border-radius: 3px;
+            padding: 5px 5px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .navbar-brand {
+            color: #000000; /* Change this color as needed */
+            font-weight: bold;
+            
+        }
+        
+        .custom-grey {
+            background-color: #e6e9ec; /* Adjust the color code to your desired shade of grey */
+        }
+        
+        
+        
+        
     </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light custom-grey">
+    <div id="logo">
+        <img src="{% static 'logo-transparent.png' %}" alt="habibifoods.com" style="width: 50px; height: auto;">
+    </div>
+    <div class="container-fluid">
+        <span class="navbar-brand">Habibi-Foods</span>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item active">
+                    <a class="nav-link menu-link" href="/menu">Menu</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
     <div class="container cart-container">
+        
         <h2 class="text-center">Your Cart</h2>
         <table class="table table-bordered">
             <thead class="thead-light">
