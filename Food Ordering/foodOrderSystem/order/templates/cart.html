@@ -84,9 +84,13 @@
             </tbody>
         </table>
         <p class="total-cost text-right">Total: Rs. {{ totalCost }}</p>
-        <div class="text-right btn-checkout">
-            <a href="#" class="btn btn-primary">Proceed to Checkout</a>
-        </div>
+        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
+        <center>
+            <stripe-buy-button buy-button-id="buy_btn_1PKjk8SCYjqYYpTQ72GpxJyy"
+                publishable-key="pk_test_51NdG18SCYjqYYpTQOf0Hs2EkbpUKTxuM4hZbIzSabLnrFnSJxfIHvpPJmoAzPTL2tNp58kZiRufgOI9YxaaF4MkW00snqohQct">
+            </stripe-buy-button>
+        </center>
     </div>
 </body>
 
