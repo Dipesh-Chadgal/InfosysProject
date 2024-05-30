@@ -42,14 +42,19 @@
         }
 
         .inner img {
-            max-width: 80px; /* Decrease image size */
+            max-width: 80px;
         }
 
         .outer {
-            margin-bottom: 40px; /* Add space between items */
-            width: calc(25% - 20px); /* Ensure proper alignment */
-            margin-right: 20px; /* Add space between items */
-            display: inline-block; /* Ensure proper alignment */
+            margin-bottom: 40px;
+            width: calc(25% - 20px);
+            margin-right: 20px;
+            display: inline-block;
+        }
+
+        .added-to-cart {
+            background-color: green;
+            color: white;
         }
     </style>
 </head>
@@ -126,11 +131,15 @@
                         <p>{{ food.price }}</p>
                     </div>
                     <form action="#" method="post">
-                        {%csrf_token%}
-                    <div class="cart ml-4">
-                        <input hidden type="text" name="id" value="{{ food.id }}">
-                        <input type="submit" class="btn btn-danger border btn-sm" value="Add to Cart">
-                    </div>
+                        {% csrf_token %}
+                        <div class="cart ml-4">
+                            <input hidden type="text" name="id" value="{{ food.id }}">
+                            {% if food.id|stringformat:"s" in cart %}
+                            <input type="submit" class="btn btn-success border btn-sm added-to-cart" value="Added to Cart" disabled>
+                            {% else %}
+                            <input type="submit" class="btn btn-danger border btn-sm" value="Add to Cart">
+                            {% endif %}
+                        </div>
                     </form>
                 </div>
             </div>
@@ -144,3 +153,5 @@
     </div>
 
     {% include "footer.html" %}
+</body>
+</html>
