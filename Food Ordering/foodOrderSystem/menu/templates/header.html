@@ -12,6 +12,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
   </button>
+  
 
   <div class="collapse navbar-collapse justify-content-end px-3" style="font-family: 'Poppins';">
       <ul class="navbar-nav ml-auto">
@@ -27,9 +28,15 @@
           <li class="nav-item px-1">
               <a class="nav-link" href={% url 'logout' %} ><i class="fas fa-sign-out-alt"></i> Logout</a>
           </li>
+          {% if not Empty %}
           <li class="nav-item px-1">
-              <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+              <a class="nav-link bg-danger blink_me" href="/cart"><i class="fas fa-shopping-cart "></i> Cart</a>
           </li>
+          {% else %}
+            <li class="nav-item px-1">
+                <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart "></i> Cart</a>
+            </li>
+          {% endif %}
       </ul>
   </div>
 </nav>

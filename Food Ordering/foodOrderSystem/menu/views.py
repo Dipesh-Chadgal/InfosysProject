@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from restaurant.models import foodItems
+from restaurant.models import foodItems,restaurantUser
 
 User = get_user_model()
 
@@ -9,7 +9,7 @@ User = get_user_model()
 def menu(request):
     user = request.user
     foods = foodItems.objects.all()
-
+    cartEmpty = True
     if hasattr(user, 'customeruser'): 
         name = user.customeruser.name 
     else:
@@ -23,9 +23,16 @@ def menu(request):
         cart = request.session.get('cart', {})
         if id in cart:
             cart[id] += 1
+            cartEmpty = False
         else:
             cart[id] = 1
+            cartEmpty = False
         request.session['cart'] = cart
 
+    list_restaurant = restaurantUser.objects.all()
+    for i in list_restaurant:
+
+        print(i.restaurantName)
+
     print('cart', request.session['cart'])
-    return render(request, 'index1.html', {'name': name, 'foodItems': foods, 'cart': request.session.get('cart', {})})
+    return render(request, 'index1.html', {'name': name, 'foodItems': foods, 'cart': request.session.get('cart', {}), 'Empty':cartEmpty, 'restaurant_list':list_restaurant})
