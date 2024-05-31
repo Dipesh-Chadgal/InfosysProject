@@ -91,23 +91,23 @@ def feedback_form(request):
             Fb.stars = 0
             Fb.comments = comments
             Fb.save()
-            return HttpResponse('<h1>Thank You!</h1><p>Your feedback has been successfully submitted. We appreciate your valuable input.</p>')
+            return render(request, 'thank_you.html')  # Render the thank you page
         except:
             return HttpResponse('<h1>Sorry!</h1><p>There is an issue</p>')
     return render(request,'feedback.html')
 
 def index(request):
-    if request.method=="POST":
-        contact=Contact()
-        name=request.POST.get('name')
-        email=request.POST.get('email')
-        subject=request.POST.get('subject')
-        contact.name=name
-        contact.email=email
-        contact.subject=subject
+    if request.method == "POST":
+        contact = Contact()
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        contact.name = name
+        contact.email = email
+        contact.subject = subject
         contact.save()
-        return HttpResponse('<h1>THANKS FOR CONTACTING US</h1>')
-    return render(request,'contact.html')
+        return render(request, 'thank_you.html')  # Render the thank you page
+    return render(request, 'contact.html')
 
 def Home(request):
     return render(request,'home.html')
