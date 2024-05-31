@@ -165,6 +165,25 @@
             border-color: #508eff; /* Change border color on hover */
             background-color: transparent; /* Change background color on hover */
         }
+        
+        /* Custom style for the search bar */
+    .custom-search {
+        max-width: 700px; /* Set max-width for the search bar */
+        margin: 0 auto; /* Center the search bar horizontally */
+    }
+
+    /* Adjust the size of the input field */
+    .custom-search .form-control {
+        border-top-right-radius: 0; /* Ensure rounded corners for input field */
+        border-bottom-right-radius: 0; /* Ensure rounded corners for input field */
+    }
+
+    /* Adjust the size of the search button */
+    .custom-search .btn {
+        border-top-left-radius: 0; /* Ensure rounded corners for button */
+        border-bottom-left-radius: 0; /* Ensure rounded corners for button */
+    }
+
     </style>
     <section class="justify-content-evenly">
         <div class="container my-5">
@@ -205,6 +224,17 @@
     <div class="container-fluid text-center d-flex justify-content-center flex-wrap py-5">
         <h1>Tasty food for you....!</h1>
     </div>
+
+    /* Search Bar */
+
+    <form method="GET" action="{% url 'menu' %}" class="mb-5">
+        <div class="input-group custom-search">
+            <input type="text" name="q" placeholder="Search for food..." class="form-control"
+                value="{{ request.GET.q }}">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
 
     <section class="cards d-flex justify-content-evenly flex-wrap">
         {% if foodItems is None %}

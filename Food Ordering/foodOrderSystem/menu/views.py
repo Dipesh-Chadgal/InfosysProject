@@ -1,17 +1,23 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from restaurant.models import foodItems,restaurantUser
+from restaurant.models import foodItems, restaurantUser
+from django.db.models import Q
 
 User = get_user_model()
 
 @login_required
 def menu(request):
     user = request.user
+    query = request.GET.get('q')
     foods = foodItems.objects.all()
+    
+    if query:
+        foods = foods.filter(Q(name__icontains=query))
+    
     cartEmpty = True
-    if hasattr(user, 'customeruser'): 
-        name = user.customeruser.name 
+    if hasattr(user, 'customeruser'):
+        name = user.customeruser.name
     else:
         name = "No name found"
 
@@ -30,9 +36,11 @@ def menu(request):
         request.session['cart'] = cart
 
     list_restaurant = restaurantUser.objects.all()
-    for i in list_restaurant:
 
-        print(i.restaurantName)
-
-    print('cart', request.session['cart'])
-    return render(request, 'index1.html', {'name': name, 'foodItems': foods, 'cart': request.session.get('cart', {}), 'Empty':cartEmpty, 'restaurant_list':list_restaurant})
+    return render(request, 'index1.html', {
+        'name': name,
+        'foodItems': foods,
+        'cart': request.session.get('cart', {}),
+        'Empty': cartEmpty,
+        'restaurant_list': list_restaurant
+    })

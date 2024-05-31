@@ -41,6 +41,7 @@ urlpatterns = [
     path('addMenu/', restaurantviews.addMenu, name='addMenu'),
     path('cart/', orderviews.Cart, name='cart'),
     
+    
 
 ]
 
