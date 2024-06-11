@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from restaurant.models import foodItems, restaurantUser
 from django.db.models import Q
+from django.http import request
 
 User = get_user_model()
 
@@ -44,3 +45,12 @@ def menu(request):
         'Empty': cartEmpty,
         'restaurant_list': list_restaurant
     })
+
+
+
+
+def restaurantPage(request):
+    rname = request.POST
+    print(rname)
+
+    return render(request,'restaurantPage.html')

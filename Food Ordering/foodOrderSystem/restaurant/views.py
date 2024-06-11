@@ -92,7 +92,17 @@ def addMenu(request):
             messages.error(request,'Error in adding Food Item')
             return render(request,'addMenu.html')
         
-    return render(request, 'addMenu.html',{'name':restaurant})
+    item = foodItems.objects.all()
+    print(item)
+    print(restaurant)
+    
+    context = {
+        'name': restaurant,
+        'items': item,
+    }
+    
+        
+    return render(request, 'addMenu.html',context)
 
 
 def logoutRestaurant(request):
