@@ -69,39 +69,41 @@ def registerRestaurant(request):
 
 @login_required
 def addMenu(request):
-    
+    context = {}
     if request.user.is_restaurant:
         if request.user.is_authenticated:
             r = restaurantUser.objects.get(email=request.user)
             restaurant = r.restaurantName
+
+
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            price = request.POST.get('price')
+            image = request.FILES.get('image')
+
+            try:
+                item = foodItems(name=name, price=price, image=image, restaurantName= restaurant )
+                item.save()
+                messages.success(request,"Successfully Added the Item")
+            
+            except:
+                messages.error(request,'Error in adding Food Item')
+     
+        
+        item = foodItems.objects.all()
+        print(item)
+        print(restaurant)
+        
+        context = {
+            'name': restaurant,
+            'items': item,
+        }
+
     else:
         messages.error(request,'Login in as Restaurant')
         return redirect('loginRestaurant')
     
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        price = request.POST.get('price')
-        image = request.FILES.get('image')
-
-        try:
-            item = foodItems(name=name, price=price, image=image, restaurantName= restaurant )
-            item.save()
-            messages.success(request,"Successfully Added the Item")
-            return render(request,'addMenu.html')
-        except:
-            messages.error(request,'Error in adding Food Item')
-            return render(request,'addMenu.html')
-        
-    item = foodItems.objects.all()
-    print(item)
-    print(restaurant)
-    
-    context = {
-        'name': restaurant,
-        'items': item,
-    }
-    
-        
+   
     return render(request, 'addMenu.html',context)
 
 

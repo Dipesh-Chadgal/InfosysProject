@@ -151,7 +151,7 @@
             <h2><span style="color: black;">Restaurant Name: </span>{{name}}</h2>
         </div>
         <h4 class="mb-4 text-center bi-body-text text-reset">New Food Item Details</h4>
-        <form method="post">
+        <form method="post"  enctype="multipart/form-data" >
             {% csrf_token %}
             {% if messages %}
             {% for message in messages %}
