@@ -1,7 +1,10 @@
 {%load static%}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <div id='preloader'>
-    <center> <img src={% static "loading.gif" %}></center>
+    <div id="loader">
+        <img class="img-fluid" src={% static "loading.gif" %}>    
+    </div>
+    
 </div>
 
 <style>
@@ -11,7 +14,18 @@
         height: 100vh;
         z-index: 100;
         position: fixed;
-        padding-top: 30vh;
+        
+    }
+
+    #loader {
+        display: flex;
+        height: 100vh;
+        position: relative;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        /* margin: 0 auto; */
+        align-items: center;
     }
 </style>
 <script>
